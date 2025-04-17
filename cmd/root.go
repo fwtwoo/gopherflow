@@ -12,10 +12,6 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "GopherFlow",
 	Short: "GopherFlow is a fast CLI tool that automates AI-generated, conventional commit messages — so you can skip the manual summaries and focus on coding.",
-	Long:  `GopherFlow is a fast CLI tool that automates AI-generated, conventional commit messages — so you can skip the manual summaries and focus on coding.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

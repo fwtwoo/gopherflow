@@ -13,7 +13,7 @@ import (
 // 	// Print welcome message
 // 	fmt.Println("╔══════════════════════════════════════════════════════════╗")
 // 	fmt.Println("║                Welcome to GopherFlow!                    ║")
-// 	fmt.Println("║  AI-generated, industry-standard commit messages.        ║")
+// 	fmt.Println("║       AI-generated, high-quality commit messages.        ║")
 // 	fmt.Println("╚══════════════════════════════════════════════════════════╝")
 // 	fmt.Print("\n")
 // }
