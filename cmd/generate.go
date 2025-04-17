@@ -1,6 +1,4 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
+// Auto-generated with Cobra-CLI
 package cmd
 
 import (
@@ -13,8 +11,8 @@ import (
 
 // generateCmd represents the generate command
 var generateCmd = &cobra.Command{
-	Use:   "generate",
-	Short: "Command to generate",
+	Use:   "run",
+	Short: "Command to run the application.",
 
 	Run: func(cmd *cobra.Command, args []string) {
 		res, err := lib.Chat()

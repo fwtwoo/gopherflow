@@ -22,11 +22,14 @@ func Chat() (string, error) {
 	// Scanner reads user input
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
+
+	// Scanner error check
 	if err := scanner.Err(); err != nil {
 		return "", fmt.Errorf("error reading input: %v", err)
 	}
-	userInput := scanner.Text()
 
+	// Saves user input
+	userInput := scanner.Text()
 	prompt := fmt.Sprintf("Input: %s\n", userInput)
 
 	// Loads API Key from OpenRouter.ai (.env)
@@ -38,10 +41,9 @@ func Chat() (string, error) {
 	// Configure client for OpenRouter
 	config := openai.DefaultConfig(apiKey)
 	config.BaseURL = "https://openrouter.ai/api/v1"
-
 	client := openai.NewClientWithConfig(config)
 
-	// OpenAI
+	// OpenAI connection
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{

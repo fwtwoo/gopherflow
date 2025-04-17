@@ -1,5 +1,4 @@
 // Auto-generated with Cobra-CLI
-
 package cmd
 
 import (

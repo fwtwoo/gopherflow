@@ -1,6 +1,4 @@
-/*
-Copyright © 2025 Ebbe Karlstad
-*/
+// Main Go file
 package main
 
 import "github.com/ebbekarlstad/gopherflow/cmd"
