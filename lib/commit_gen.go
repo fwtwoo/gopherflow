@@ -15,6 +15,8 @@ func Chat() (string, error) {
 	// Load .env file
 	godotenv.Load()
 
+	PrintWelcome()
+
 	// Prompt user and flush stdout immediately
 	fmt.Print("? Describe your changes in a few words (e.g., 'Fixed bug in Auth'): ")
 	os.Stdout.Sync() // Fixed invisible prompt
@@ -32,10 +34,12 @@ func Chat() (string, error) {
 	userInput := scanner.Text()
 	prompt := fmt.Sprintf("Input: %s\n", userInput)
 
+	println("\n🔄 Generating commit message...\n")
+
 	// Loads API Key from OpenRouter.ai (.env)
 	apiKey := os.Getenv("API_KEY")
 	if apiKey == "" {
-		log.Fatalln("Invalid API Key!")
+		log.Fatalln("\n❌ Invalid API Key")
 	}
 
 	// Configure client for OpenRouter
@@ -60,7 +64,9 @@ func Chat() (string, error) {
 
 	// Error check
 	if err != nil {
-		return "", fmt.Errorf("completion error: %v", err)
+		println("\n❌ Failed to generate commit message.\n")
+		println("Possible reasons:\n\t- No internet connection\n\t- API rate limit exceeded\n")
+		println("Press [Ctrl + C] to exit, and try again.")
 	}
 
 	// Returns response

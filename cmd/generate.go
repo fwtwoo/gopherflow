@@ -11,7 +11,7 @@ import (
 
 // generateCmd represents the generate command
 var generateCmd = &cobra.Command{
-	Use:   "run",
+	Use:   "generate",
 	Short: "Command to run the application.",
 
 	Run: func(cmd *cobra.Command, args []string) {
