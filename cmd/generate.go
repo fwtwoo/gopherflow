@@ -3,7 +3,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	"strings"
 
 	"github.com/ebbekarlstad/gopherflow/lib"
 	"github.com/spf13/cobra"
@@ -16,13 +16,21 @@ var generateCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		res, err := lib.Chat()
+		// Check if response contains "❌" (means Deepseek gen. error)
+		contains := strings.Contains(res, "❌")
 
 		if err != nil {
-			log.Fatal(err)
+			return
 		}
-		fmt.Println("> Response: ")
-		fmt.Println("")
-		fmt.Println(res)
+		if contains {
+			fmt.Println("")
+			fmt.Println(res)
+		} else {
+			fmt.Println("\n✅ Commit message generated successfully: ")
+			fmt.Println("──────────────────────────────────────────────")
+			fmt.Println("\n", res)
+			fmt.Println("\n──────────────────────────────────────────────")
+		}
 	},
 }
 

@@ -34,7 +34,7 @@ func Chat() (string, error) {
 	userInput := scanner.Text()
 	prompt := fmt.Sprintf("Input: %s\n", userInput)
 
-	println("\n🔄 Generating commit message...\n")
+	println("🔄 Generating commit message...")
 
 	// Loads API Key from OpenRouter.ai (.env)
 	apiKey := os.Getenv("API_KEY")
@@ -66,7 +66,8 @@ func Chat() (string, error) {
 	if err != nil {
 		println("\n❌ Failed to generate commit message.\n")
 		println("Possible reasons:\n\t- No internet connection\n\t- API rate limit exceeded\n")
-		println("Press [Ctrl + C] to exit, and try again.")
+		println("👋 Exiting...")
+		return "", err // <- prevent panic
 	}
 
 	// Returns response
