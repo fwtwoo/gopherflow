@@ -15,7 +15,7 @@ var generateCmd = &cobra.Command{
 	Short: "Command to run the application.",
 
 	Run: func(cmd *cobra.Command, args []string) {
-		res, err := lib.Chat()
+		res, err := lib.Generate()
 		// Check if response contains "❌" (means Deepseek gen. error)
 		contains := strings.Contains(res, "❌")
 

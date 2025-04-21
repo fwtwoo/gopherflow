@@ -11,7 +11,7 @@ import (
 	"github.com/sashabaranov/go-openai"
 )
 
-func Chat() (string, error) {
+func Generate() (string, error) {
 	// Load .env file
 	godotenv.Load()
 
