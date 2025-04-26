@@ -6,4 +6,4 @@ gopherflow generate
 ## TODO:
 restrict user input while generating
 add clipboard copying
-(add Git connection for intelligent commit messaging)
+(add Git connection for intelligent commit messaging?)
