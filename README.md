@@ -70,4 +70,7 @@ gopherflow generate
 
 ----------
 
+#### NOTES:
+Recently, this project has worked worse than it did before. I believe this is due to some changes in the DeepSeek model used to build it. Thought this would be good to add. 
+
 #### ⭐ Star this repo if you find it helpful!
