@@ -6,13 +6,13 @@ import (
 	"strings"
 
 	"github.com/atotto/clipboard"
-	"github.com/fwtwoo/gopherflow/lib"
+	"github.com/fwtwoo/summit/lib"
 	"github.com/spf13/cobra"
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gopherflow [description]",
+	Use:   "summit [description]",
 	Short: "Generate conventional commit messages",
 	Long:  `GopherFlow generates high-quality conventional commit messages using AI.`,
 	Args:  cobra.MinimumNArgs(1),
@@ -24,13 +24,13 @@ var rootCmd = &cobra.Command{
 		res, err := lib.GenerateFromDescription(description)
 
 		if err != nil {
-			fmt.Println("⚠️  Failed to generate commit message")
+			fmt.Println("⚠️ Failed to generate commit message")
 			fmt.Println("Check your internet connection")
 			os.Exit(1)
 		}
 
 		// Output with lightning bolt (hell yeah)
-		fmt.Printf("⚡ %s\n", res)
+		fmt.Printf("⚡%s\n", res)
 
 		// Copy to clipboard
 		err = clipboard.WriteAll(res)

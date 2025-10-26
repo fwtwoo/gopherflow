@@ -2,7 +2,7 @@
 package main
 
 import (
-	"github.com/fwtwoo/gopherflow/cmd"
+	"github.com/fwtwoo/summit/cmd"
 )
 
 func main() {

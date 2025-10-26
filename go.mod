@@ -1,4 +1,4 @@
-module github.com/fwtwoo/gopherflow
+module github.com/fwtwoo/summit
 
 go 1.13
 

@@ -10,11 +10,11 @@ import (
 var generateCmd = &cobra.Command{
 	Use:    "generate",
 	Hidden: true,
-	Short:  "Legacy command - use 'gopherflow <description>' instead",
+	Short:  "Legacy command - use 'summit <description>' instead",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("⚠️  This command is deprecated")
-		fmt.Println("Use: gopherflow <description>")
-		fmt.Println("Example: gopherflow fixed login bug")
+		fmt.Println("⚠️ This command is deprecated")
+		fmt.Println("Use: summit <description>")
+		fmt.Println("Example: summit fixed login bug")
 	},
 }
 
