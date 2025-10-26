@@ -1,20 +1,46 @@
-// Auto-generated with Cobra-CLI
 package cmd
 
 import (
+	"fmt"
 	"os"
+	"strings"
 
+	"github.com/atotto/clipboard"
+	"github.com/fwtwoo/gopherflow/lib"
 	"github.com/spf13/cobra"
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "GopherFlow",
-	Short: "GopherFlow is a fast CLI tool that automates AI-generated, conventional commit messages — so you can skip the manual summaries and focus on coding.",
+	Use:   "gopherflow [description]",
+	Short: "Generate conventional commit messages",
+	Long:  `GopherFlow generates high-quality conventional commit messages using AI.`,
+	Args:  cobra.MinimumNArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		// Join all args into description
+		description := strings.Join(args, " ")
+
+		// Generate commit message
+		res, err := lib.GenerateFromDescription(description)
+
+		if err != nil {
+			fmt.Println("⚠️  Failed to generate commit message")
+			fmt.Println("Check your internet connection")
+			os.Exit(1)
+		}
+
+		// Output with lightning bolt (hell yeah)
+		fmt.Printf("⚡ %s\n", res)
+
+		// Copy to clipboard
+		err = clipboard.WriteAll(res)
+		if err == nil {
+			fmt.Println("[Copied to clipboard]")
+		}
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -23,13 +49,5 @@ func Execute() {
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gopherflow.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// No flags needed for minimal UX
 }

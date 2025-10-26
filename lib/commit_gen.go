@@ -1,72 +1,76 @@
 package lib
 
 import (
-	"bufio"
 	"context"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
 	"github.com/sashabaranov/go-openai"
 )
 
-func Generate() (string, error) {
-	// Load .env file
+// Default shared API key - This is INTENTIONAL and no harm can be done with this key
+const defaultAPIKey = "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"
+
+const defaultPromptPrefix = `You are a Conventional Commit expert. Generate a commit message that follows strict conventional commit standards. Format as:
+
+[type]([scope]): [imperative-mood-subject-under-50-chars]
+
+Structure:
+1. Type must be one of: feat, fix, chore, refactor, docs, style, test, perf, ci, build, revert
+2. Scope should indicate the module/component (e.g., auth, database, ui)
+3. Subject must:
+   - Start with lowercase verb (fix, add, remove)
+   - Use imperative mood ('Add' not 'Added')
+   - Contain no ending punctuation
+   - Stay under 50 characters
+
+Example Transformation:
+Input: 'fixed bug in login where user can make acc. without a passwrd'
+Output: 'fix(auth): resolve login validation bug for empty passwords'
+
+Current User Input to Transform:
+`
+
+func GenerateFromDescription(description string) (string, error) {
+	// Load .env file (optional - for users who want custom keys)
 	godotenv.Load()
 
-	PrintWelcome()
+	// Build prompt
+	prompt := fmt.Sprintf("Input: %s\n", description)
 
-	// Prompt user and flush stdout immediately
-	fmt.Print("? Describe your changes in a few words (e.g., 'Fixed bug in Auth'): ")
-	os.Stdout.Sync()
-
-	// Scanner reads user input
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-
-	// Scanner error check
-	if err := scanner.Err(); err != nil {
-		return "", fmt.Errorf("error reading input: %v", err)
-	}
-
-	// Saves user input
-	userInput := scanner.Text()
-	prompt := fmt.Sprintf("Input: %s\n", userInput)
-
-	println("📄 Generating commit message...")
-
-	// Loads API Key from Groq (.env)
+	// Use env var if present, otherwise use default shared key
 	apiKey := os.Getenv("API_KEY")
 	if apiKey == "" {
-		log.Fatalln("\n❌ Invalid API Key")
+		apiKey = defaultAPIKey
+	}
+
+	// Use env prompt prefix if present, otherwise use default
+	promptPrefix := os.Getenv("Prompt_prefix")
+	if promptPrefix == "" {
+		promptPrefix = defaultPromptPrefix
 	}
 
 	// Configure client for Groq
 	config := openai.DefaultConfig(apiKey)
-	config.BaseURL = "https://api.groq.com/openai/v1" // Changed to Groq endpoint
+	config.BaseURL = "https://api.groq.com/openai/v1"
 	client := openai.NewClientWithConfig(config)
 
 	// Groq API connection
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
+		// Use openAI
 		openai.ChatCompletionRequest{
-			// Use Llama 3.3 70B - Fast and high quality
 			Model: "llama-3.3-70b-versatile",
-			// Message with prompt prefix
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    "user",
-					Content: os.Getenv("Prompt_prefix") + prompt,
+					Content: promptPrefix + prompt,
 				},
 			},
 		})
 
-	// Error check
 	if err != nil {
-		println("\n❌ Failed to generate commit message.\n")
-		println("Possible reasons:\n\t- No internet connection\n\t- API rate limit exceeded\n")
-		println("👋 Exiting...")
 		return "", err
 	}
 

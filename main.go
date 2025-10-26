@@ -2,7 +2,7 @@
 package main
 
 import (
-	"github.com/ebbekarlstad/gopherflow/cmd"
+	"github.com/fwtwoo/gopherflow/cmd"
 )
 
 func main() {
