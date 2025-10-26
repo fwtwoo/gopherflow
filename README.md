@@ -1,116 +1,108 @@
-# GopherFlow 🛠️
+# Summit 🛠️
 
-![GopherFlow Usage Example](/public/example.png)
+A simple CLI tool that generates conventional commit messages using AI. Built because we've all stared at the `git commit` trying to figure out what to write.
 
-A fast and intuitive CLI tool that generates **high-quality, industry-standard commit messages** using AI ⚡
+**Contributions and Issues are welcome!**
 
-![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square) [![Go](https://img.shields.io/badge/Go-1.13-blue?style=flat-square&logo=go)](https://go.dev/)
+![Summit Usage Example](/public/example.png)
 
-## ✨ Features
+## What it does
 
--   🧠 **AI-Powered Commit Messages** – Get professional-grade commits in seconds
--   ⚡ **Lightning Fast** – Powered by Groq's ultra-fast inference (300+ tokens/sec)
--   🎯 **Minimal UX** – Just type your description and go
--   💯 **100% Free** – No credit card or API key setup required
--   📋 **Auto-Copy** – Commit message copied to clipboard automatically
--   ✨ **Zero Setup** – Works out of the box, no configuration needed
+You type what you changed, it gives you a proper commit message, copied to your clipboard.
 
-## 🚀 Getting Started
-
-### Prerequisites
-
--   Go 1.13+
--   Internet connection (for API access)
-
-### Installation
-
-#### Install via Go (Easiest)
 ```bash
-go install github.com/fwtwoo/gopherflow@latest
-```
-
-#### Or Clone and Build
-```bash
-git clone https://github.com/fwtwoo/gopherflow.git
-cd gopherflow
-go mod tidy
-go build -o gopherflow
-```
-
-**✨ That's it! No API key setup, no configuration files needed.**
-
-### Usage
-
-Simply describe your changes:
-```bash
-gopherflow fixed login bug
-```
-
-Output:
-```
+summit fixed login bug
 ⚡ fix(auth): resolve login validation bug
 [Copied to clipboard]
 ```
 
-More examples:
+## Installation
+
+### Option 1: Quick Install (if you have Go already installed)
+
 ```bash
-gopherflow added user profile page
-⚡ feat(profile): add user profile page
-[Copied to clipboard]
-
-gopherflow updated README documentation
-⚡ docs(readme): update documentation
-[Copied to clipboard]
-
-gopherflow refactored database connection logic
-⚡ refactor(database): simplify connection logic
-[Copied to clipboard]
+go install github.com/fwtwoo/summit@latest
 ```
 
----
+### Option 2: Build from Source
+```bash
+git clone https://github.com/fwtwoo/summit.git
+cd summit
+go mod tidy
+go build -o summit
+./summit fixed login bug  # Use "./summit" when running locally
+```
 
-## 🔧 Advanced Usage (Optional)
+**Optional:** Now move to PATH for global access:
+```bash
+sudo mv summit /usr/local/bin/ # Or other directory that's in your $PATH
+summit fixed login bug  # Now "summit" works from anywhere
+```
 
-### Use Your Own API Key
+## Dependencies
 
-Want to use your own Groq API key? Set the environment variable:
+```
+Go 1.13+
+Internet connection (for API)
+```
+
+The tool uses a shared Groq API key that's baked in in the code, so you don't have to deal with any custom API keys.
+
+## Usage
+
+Just describe what you did:
+
+```bash
+summit added user authentication
+⚡ feat(auth): add user authentication
+
+summit updated docs
+⚡ docs: update documentation
+
+summit refactored the entire codebase
+⚡ refactor: simplify codebase structure
+```
+
+The commit message gets copied to your clipboard automatically.
+
+## Advanced (Optional)
+
+### If you want to create your own API key you need to:
+
+Set an environment variable:
+
 ```bash
 export API_KEY="your-groq-api-key"
-gopherflow fixed login bug
 ```
 
 Or create a `.env` file:
+
 ```bash
 API_KEY="your-groq-api-key"
 ```
 
-Get your free API key from [console.groq.com](https://console.groq.com/keys)
+Get a free key from [console.groq.com/keys](https://console.groq.com/keys) (no credit card needed).
 
-### Custom Prompt Prefix
+### Want to customize how it writes commits?
 
-You can customize the AI's behavior by setting the `Prompt_prefix` environment variable in a `.env` file.
+Add `Prompt_prefix` to your `.env` file and customize to your liking.
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
+* **Go** - Fast, and compiles to a single binary
+* **Cobra** - CLI library
+* **Groq API** - ultra-fast AI (Llama 3.3 70B, ~300 tokens/sec)
 
--   🐹 **Go (Golang)** – Fast, efficient, compiled language
--   🖥️ **Cobra** – Modern Go library for creating CLI applications
--   🧠 **Groq API** – Ultra-fast AI inference using Llama 3.3 70B
--   ⚡ **300+ tokens/sec** – Industry-leading inference speed
+## Notes
 
----
+* The tool uses a shared free API key. Please don't abuse it. If you're using this 100+ times a day, you might want to get your own key.
+* Works best with actual code changes. Weird inputs might give weird results.
+* The "generate" subcommand from older versions still works but is hidden. Just use `summit <description>` now.
 
-## 📝 Note
+## Why?
 
-This tool uses a shared Groq API key for convenience. Please be respectful with usage. The free tier has generous rate limits, but if you plan to use it very heavily, consider using your own free API key from [console.groq.com](https://console.groq.com/keys).
-
----
-
-## 📄 License
-
-MIT License - see LICENSE file for details
+Because I've sat for way too long trying to create a conventional and "proffesional" commit message. Now, I can type whatever comes to mind, and let the AI do the rest.
 
 ---
 
-#### ⭐ Star this repo if you find it helpful!
+**Please star this repo if you liked it!** ⭐
