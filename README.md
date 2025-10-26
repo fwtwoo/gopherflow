@@ -4,7 +4,7 @@ A simple CLI tool that generates conventional commit messages using AI. Built be
 
 **Contributions and Issues are welcome!**
 
-![Summit Usage Example](/public/carbon.png)
+![Summit Usage Example](/public/default.svg)
 
 ## What it does
 
@@ -106,4 +106,5 @@ Because I've sat for way too long trying to create a conventional and "proffesio
 ---
 
 **Please star this repo if you liked it!** ⭐
+
 
