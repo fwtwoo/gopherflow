@@ -19,7 +19,7 @@ func Generate() (string, error) {
 
 	// Prompt user and flush stdout immediately
 	fmt.Print("? Describe your changes in a few words (e.g., 'Fixed bug in Auth'): ")
-	os.Stdout.Sync() // Fixed invisible prompt
+	os.Stdout.Sync()
 
 	// Scanner reads user input
 	scanner := bufio.NewScanner(os.Stdin)
@@ -34,25 +34,25 @@ func Generate() (string, error) {
 	userInput := scanner.Text()
 	prompt := fmt.Sprintf("Input: %s\n", userInput)
 
-	println("🔄 Generating commit message...")
+	println("📄 Generating commit message...")
 
-	// Loads API Key from OpenRouter.ai (.env)
+	// Loads API Key from Groq (.env)
 	apiKey := os.Getenv("API_KEY")
 	if apiKey == "" {
 		log.Fatalln("\n❌ Invalid API Key")
 	}
 
-	// Configure client for OpenRouter
+	// Configure client for Groq
 	config := openai.DefaultConfig(apiKey)
-	config.BaseURL = "https://openrouter.ai/api/v1"
+	config.BaseURL = "https://api.groq.com/openai/v1" // Changed to Groq endpoint
 	client := openai.NewClientWithConfig(config)
 
-	// OpenAI connection
+	// Groq API connection
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
-			// Use DeepSeek V3 model
-			Model: "deepseek/deepseek-chat:free",
+			// Use Llama 3.3 70B - Fast and high quality
+			Model: "llama-3.3-70b-versatile",
 			// Message with prompt prefix
 			Messages: []openai.ChatCompletionMessage{
 				{
@@ -67,7 +67,7 @@ func Generate() (string, error) {
 		println("\n❌ Failed to generate commit message.\n")
 		println("Possible reasons:\n\t- No internet connection\n\t- API rate limit exceeded\n")
 		println("👋 Exiting...")
-		return "", err // <- prevent panic
+		return "", err
 	}
 
 	// Returns response
