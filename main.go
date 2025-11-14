@@ -2,7 +2,7 @@
 package main
 
 import (
-	"github.com/fwtwoo/summit/cmd"
+	"github.com/ekrlstd/summit/cmd"
 )
 
 func main() {

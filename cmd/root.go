@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/atotto/clipboard"
-	"github.com/fwtwoo/summit/lib"
+	"github.com/ekrlstd/summit/lib"
 	"github.com/spf13/cobra"
 )
 

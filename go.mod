@@ -1,4 +1,4 @@
-module github.com/fwtwoo/summit
+module github.com/ekrlstd/summit
 
 go 1.13
 
