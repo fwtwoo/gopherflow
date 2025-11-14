@@ -21,12 +21,12 @@ summit fixed login bug
 ### Option 1: Quick Install (if you have Go already installed)
 
 ```bash
-go install github.com/fwtwoo/summit@latest
+go install github.com/ekrlstd/summit@latest
 ```
 
 ### Option 2: Build from Source
 ```bash
-git clone https://github.com/fwtwoo/summit.git
+git clone https://github.com/ekrlstd/summit.git
 cd summit
 go mod tidy
 go build -o summit
@@ -106,6 +106,7 @@ Because I've sat for way too long trying to create a conventional and "proffesio
 ---
 
 **Please star this repo if you liked it!** ⭐
+
 
 
 
