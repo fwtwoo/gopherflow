@@ -10,7 +10,7 @@ import (
 )
 
 // Default shared API key - This is INTENTIONAL and no harm can be done with this key
-const defaultAPIKey = "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"
+const defaultAPIKey = "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"
 
 const defaultPromptPrefix = `You are a Conventional Commit expert. Generate a commit message that follows strict conventional commit standards. Format as:
 
@@ -77,3 +77,4 @@ func GenerateFromDescription(description string) (string, error) {
 	// Returns response
 	return resp.Choices[0].Message.Content, nil
 }
+
