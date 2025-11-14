@@ -18,13 +18,14 @@ summit fixed login bug
 
 ## Installation
 
-### Option 1: Quick Install (if you have Go already installed)
+### Option 1: Quick Install (if you already have Go installed)
 
 ```bash
 go install github.com/ekrlstd/summit@latest
 ```
 
 ### Option 2: Build from Source
+
 ```bash
 git clone https://github.com/ekrlstd/summit.git
 cd summit
@@ -34,6 +35,7 @@ go build -o summit
 ```
 
 **Optional:** Now move to PATH for global access:
+
 ```bash
 sudo mv summit /usr/local/bin/ # Or other directory that's in your $PATH
 summit fixed login bug  # Now "summit" works from anywhere
@@ -89,15 +91,15 @@ Add `Prompt_prefix` to your `.env` file and customize to your liking.
 
 ## Tech Stack
 
-* **Go** - Fast, and compiles to a single binary
-* **Cobra** - CLI library
-* **Groq API** - ultra-fast AI (Llama 3.3 70B, ~300 tokens/sec)
+- **Go** - Fast, and compiles to a single binary
+- **Cobra** - CLI library
+- **Groq API** - ultra-fast AI (Llama 3.3 70B, ~300 tokens/sec)
 
 ## Notes
 
-* The tool uses a shared free API key. Please don't abuse it. If you're using this 100+ times a day, you might want to get your own key.
-* Works best with actual code changes. Weird inputs might give weird results.
-* The "generate" subcommand from older versions still works but is hidden. Just use `summit <description>` now.
+- The tool uses a shared free API key. Please don't abuse it. If you're using this 100+ times a day, you might want to get your own key.
+- Works best with actual code changes. Weird inputs might give weird results.
+- The "generate" subcommand from older versions still works but is hidden. Just use `summit <description>` now.
 
 ## Why?
 
@@ -106,8 +108,3 @@ Because I've sat for way too long trying to create a conventional and "proffesio
 ---
 
 **Please star this repo if you liked it!** ⭐
-
-
-
-
-
